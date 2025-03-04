@@ -1,0 +1,35 @@
+#root {
+    min-height: 100vh;
+    align-content: center;
+}
+
+.container {
+    background: #ecebeb;
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+        & button {
+            font-weight: 600;
+            background: #f5f4f4;
+            display: flex;
+            justify-content: center;
+            border: 1px solid #b6b6b6;
+            border-radius: 20px;
+            width: 200px;
+            margin-top: 40px;
+            padding: 10px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        
+        & button:hover {
+            background: #ffffff;
+        }
+}
