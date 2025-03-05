@@ -33,3 +33,50 @@
             background: #ffffff;
         }
 }
+
+.pontos-dia {
+    background: #f8f8f8;
+    width: 400px;
+    height: 150px;
+    border-radius: 20px;
+    margin: 20px auto 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 10px;
+    text-align: center;
+}
+
+.dia {
+    grid-column: 1 / -1;
+}
+
+.horario {
+    display: flex;
+    flex-direction: column;
+
+}
+span {
+    color: #808080;
+}
+
+.sem-ponto-container {
+    background: #f8f8f8;
+    width: 500px;
+    height: 100px;
+    border-radius: 20px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sem-ponto {
+    color: #000;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+}

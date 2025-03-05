@@ -17,8 +17,12 @@ function Login() {
             })
             
             if (response.status === 200) {
-                sessionStorage.setItem("userId", response.data.id);
-                navigate('/home');
+                if (response.data.role == 'USER') {
+                    sessionStorage.setItem("userId", response.data.id);
+                    navigate('/home');
+                } else {
+                    navigate('/homeAdmin');
+                }
             }
         } catch (error) {
             console.error("Erro na autenticação", error);
@@ -27,15 +31,21 @@ function Login() {
 
     }
 
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            autenticarUser();
+        }
+    }
+
     return (
         <>
             <div className='login-container'>
-                <form>
+                <form className='login-form' onKeyDown={handleKeyPress}>
                     <h1>Faça seu Login</h1>
                     <input placeholder='Login' name='login' type='text' ref={inputLogin} autoComplete='off' />
                     <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />
                     <button type='button' onClick={autenticarUser}>Entrar</button>
-                    <Link to ='/register'><span>Registre-se aqui</span></Link>
+                    <Link to ='/register'>Registre-se aqui</Link>
                 </form>
             </div>
         </>

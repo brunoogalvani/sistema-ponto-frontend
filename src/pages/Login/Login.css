@@ -8,7 +8,7 @@
     align-content: center;
 }
 
-form {
+.login-form {
     height: 250px;
     display: flex;
     flex-direction: column;

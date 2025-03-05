@@ -1,9 +1,49 @@
 .register-container {
     background: #ecebeb;
     width: 400px;
-    height: 300px;
+    height: 350px;
     border-radius: 20px;
     margin: 0 auto;
     padding: 20px;
     align-content: center;
 }
+
+.register-form {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    & h1 {
+        display: flex;
+        justify-content: center;
+    }
+    
+    & input {
+        width: 250px;
+        height: 25px;
+        outline: none;
+        text-align: center;
+    }
+    
+    & button {
+        width: 100px;
+        height: 40px;
+        border: 1px solid #b6b6b6;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    & button:hover {
+        background: #ffffff;
+    }
+
+    & a {
+        color: #3554e0;
+        text-decoration: none;
+        cursor: pointer;
+    }
+}
+
