@@ -1,0 +1,9 @@
+.register-container {
+    background: #ecebeb;
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 20px;
+    align-content: center;
+}
