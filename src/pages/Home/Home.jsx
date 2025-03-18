@@ -7,7 +7,7 @@ function Home() {
   const [userName, setUserName] = useState("");
   const userId = sessionStorage.getItem('userId');
 
-  const [pontos, setPontos] = useState("");
+  const [ponto, setPonto] = useState("");
 
   const dataAtual = new Date();
   const dia = String(dataAtual.getDate()).padStart(2, '0');
@@ -16,16 +16,14 @@ function Home() {
   const dataFormatada = `${dia}-${mes}-${ano}`;
 
   useEffect(() => {
-    getPontos()
+    getPonto()
   }, [userId]);
 
-  async function getPontos() {
+  async function getPonto() {
     try {
-      const response = await api.get(`/pontos/${userId}`);
+      const response = await api.get(`/pontos/${userId}/${dataFormatada}`);
 
-      const pontoDia = response.data.find((ponto) => ponto.dia === dataFormatada);
-
-      setPontos(pontoDia || null);
+      setPonto(response.data);
     } catch (error) {
       console.error("Erro na requisição", error);
     }
@@ -65,34 +63,34 @@ function Home() {
         <button type="button" onClick={baterPonto}>Registrar Ponto</button>
       </div>
 
-        {pontos ? (
+        {ponto ? (
           <>
             <div className="pontos-dia">
               <div className="dia">
                 Dia:
-                <span> {pontos.dia}</span>
+                <span>{dia}/{mes}/{ano}</span>
               </div>
               <div className="horario">
                 Entrada
-                <span>{pontos.entradaManha || "--:--"}</span>
+                <span>{ponto.entradaManha || "--:--"}</span>
               </div>
               <div className="horario">
                 Saída
-                <span>{pontos.saidaManha || "--:--"}</span>
+                <span>{ponto.saidaManha || "--:--"}</span>
               </div>
               <div className="horario">
                 Entrada
-                <span>{pontos.entradaTarde || "--:--"}</span>
+                <span>{ponto.entradaTarde || "--:--"}</span>
               </div>
               <div className="horario">
                 Saída
-                <span>{pontos.saidaTarde || "--:--"}</span>
+                <span>{ponto.saidaTarde || "--:--"}</span>
               </div>
             </div>
           </>
         ) : (
           <div className="sem-ponto-container">
-            <span className='sem-ponto'>Não existe nenhum registro de ponto no dia {dataFormatada}</span>
+            <span className='sem-ponto'>Não existe nenhum registro de ponto no dia {dia}/{mes}/{ano}</span>
           </div>
         )}
     </>

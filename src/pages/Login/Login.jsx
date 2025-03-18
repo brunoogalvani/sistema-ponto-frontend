@@ -21,7 +21,8 @@ function Login() {
                     sessionStorage.setItem("userId", response.data.id);
                     navigate('/home');
                 } else {
-                    navigate('/homeAdmin');
+                    sessionStorage.setItem("userId", response.data.id);
+                    navigate('/dashboard');
                 }
             }
         } catch (error) {
