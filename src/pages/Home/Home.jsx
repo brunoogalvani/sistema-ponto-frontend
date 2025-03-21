@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import './Home.css'
 import api from '../../services/api'
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+
+  const navigate = useNavigate()
 
   const [userName, setUserName] = useState("");
   const userId = sessionStorage.getItem('userId');
@@ -48,7 +51,7 @@ function Home() {
   async function baterPonto() {
     try {
       await api.post(`/pontos/bater/${userId}`);
-      getPontos();
+      getPonto();
     } catch (error) {
       alert("Todas as marcações de ponto do dia já foram preenchidas")
       console.error("Erro ao registrar ponto:", error);
@@ -61,6 +64,7 @@ function Home() {
         <h1>Registro de Ponto</h1>
         <h3>Bem-vindo, {userName}</h3>
         <button type="button" onClick={baterPonto}>Registrar Ponto</button>
+        <button type="button" onClick={() => navigate('/')}>Voltar</button>
       </div>
 
         {ponto ? (

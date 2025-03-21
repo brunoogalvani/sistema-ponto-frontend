@@ -1,7 +1,7 @@
 .dashboard-container {
     background: #ecebeb;
-    width: 400px;
-    height: 300px;
+    width: 600px;
+    height: 500px;
     border-radius: 20px;
     margin: 0 auto;
     padding: 20px;
@@ -26,5 +26,14 @@
         
         & button:hover {
             background: #ffffff;
+        }
+        
+        & select {
+            height: 25px;
+            width: 300px;
+            padding-left: 10px;
+            border: 1px solid #b6b6b6;
+            border-radius: 10px;
+            outline: none;
         }
 }
