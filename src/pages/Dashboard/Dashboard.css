@@ -37,3 +37,17 @@
             outline: none;
         }
 }
+
+.pontos {
+    height: 200px;
+    align-content: center;
+    overflow-y: auto;
+
+    & .pontos-dia {
+        height: auto;
+    }
+
+    & .pontos-dia:first-child {
+        margin-top: 0;
+    }
+}

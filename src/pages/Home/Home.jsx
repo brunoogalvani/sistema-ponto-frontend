@@ -72,7 +72,7 @@ function Home() {
             <div className="pontos-dia">
               <div className="dia">
                 Dia:
-                <span>{dia}/{mes}/{ano}</span>
+                <span> {dia}/{mes}/{ano}</span>
               </div>
               <div className="horario">
                 Entrada

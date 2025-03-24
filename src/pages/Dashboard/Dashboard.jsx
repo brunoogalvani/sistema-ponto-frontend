@@ -32,6 +32,7 @@ function Dashboard() {
       setPontos(response.data);
     } catch (error) {
       console.error("Erro na requisição", error);
+      setPontos([]);
     }
   }
 
@@ -59,37 +60,38 @@ function Dashboard() {
           }
         </select>
 
-        {pontos.length!==0 ? (
-          pontos.map((ponto) => (
-            <div key={ponto.id} className="pontos-dia">
-              <div className="dia">
-                Dia:
-                <span> {ponto.dia}</span>
+        <div className="pontos">
+          {pontos.length!==0 ? (
+            pontos.map((ponto) => (
+              <div key={ponto.id} className="pontos-dia">
+                <div className="dia">
+                  Dia:
+                  <span> {ponto.dia}</span>
+                </div>
+                <div className="horario">
+                  Entrada
+                  <span>{ponto.entradaManha || "--:--"}</span>
+                </div>
+                <div className="horario">
+                  Saída
+                  <span>{ponto.saidaManha || "--:--"}</span>
+                </div>
+                <div className="horario">
+                  Entrada
+                  <span>{ponto.entradaTarde || "--:--"}</span>
+                </div>
+                <div className="horario">
+                  Saída
+                  <span>{ponto.saidaTarde || "--:--"}</span>
+                </div>
               </div>
-              <div className="horario">
-                Entrada
-                <span>{ponto.entradaManha || "--:--"}</span>
-              </div>
-              <div className="horario">
-                Saída
-                <span>{ponto.saidaManha || "--:--"}</span>
-              </div>
-              <div className="horario">
-                Entrada
-                <span>{ponto.entradaTarde || "--:--"}</span>
-              </div>
-              <div className="horario">
-                Saída
-                <span>{ponto.saidaTarde || "--:--"}</span>
-              </div>
+            ))
+          ) : (
+            <div className="sem-ponto-container">
+              <span className='sem-ponto'>Não existe nenhum registro de ponto deste usuário</span>
             </div>
-          ))
-        ) : (
-          <div className="sem-ponto-container">
-            <span className='sem-ponto'>Não existe nenhum registro de ponto deste usuário</span>
-          </div>
-        )}
-
+          )}
+        </div>
         <button type="button" onClick={() => navigate('/')}>Voltar</button>
       </div>
     </>
