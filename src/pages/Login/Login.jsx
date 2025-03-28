@@ -41,8 +41,8 @@ function Login() {
     return (
         <>
             <div className='login-container'>
-                <form className='login-form' onKeyDown={handleKeyPress}>
-                    <h1>Faça seu Login</h1>
+                <h1>Faça seu Login</h1>
+                    <form className='login-form' onKeyDown={handleKeyPress}>
                     <input placeholder='Login' name='login' type='text' ref={inputLogin} autoComplete='off' />
                     <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />
                     <button type='button' onClick={autenticarUser}>Entrar</button>

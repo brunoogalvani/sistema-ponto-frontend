@@ -84,6 +84,10 @@ function Dashboard() {
                   Saída
                   <span>{ponto.saidaTarde || "--:--"}</span>
                 </div>
+                <div className="total-horas">
+                  Total de Horas:
+                  <span> {ponto.totalHoras || "--:--"}</span>
+                </div>
               </div>
             ))
           ) : (

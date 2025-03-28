@@ -43,8 +43,8 @@ function Register() {
     return (
         <>
             <div className='register-container'>
+                <h1>Cadastre-se</h1>
                 <form className='register-form' onKeyDown={handleKeyPress}>
-                    <h1>Cadastre-se</h1>
                     <input placeholder='Nome' name='name' type='text' ref={inputName} autoComplete='off' />
                     <input placeholder='Login' name='login' type='text' ref={inputLogin} autoComplete='off' />
                     <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />

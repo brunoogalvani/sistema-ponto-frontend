@@ -54,8 +54,12 @@
 .horario {
     display: flex;
     flex-direction: column;
-
 }
+
+.total-horas {
+    grid-column: 1 / -1;
+}
+
 span {
     color: #808080;
 }
