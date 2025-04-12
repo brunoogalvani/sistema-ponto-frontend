@@ -58,13 +58,18 @@ function Home() {
     }
   }
 
+  function voltar() {
+    sessionStorage.setItem('userId', '');
+    navigate('/')
+  }
+
   return (
     <>
       <div className="home-container">
         <h1>Registro de Ponto</h1>
         <h3>Bem-vindo, {userName}</h3>
         <button type="button" onClick={baterPonto}>Registrar Ponto</button>
-        <button type="button" onClick={() => navigate('/')}>Voltar</button>
+        <button type="button" onClick={voltar}>Voltar</button>
       </div>
 
         {ponto ? (

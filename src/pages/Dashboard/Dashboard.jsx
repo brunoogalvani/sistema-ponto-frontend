@@ -47,6 +47,11 @@ function Dashboard() {
     }
   }
 
+  function voltar() {
+    sessionStorage.setItem('userId', '');
+    navigate('/')
+  }
+
   return (
     <>
       <div className="dashboard-container">
@@ -96,7 +101,7 @@ function Dashboard() {
             </div>
           )}
         </div>
-        <button type="button" onClick={() => navigate('/')}>Voltar</button>
+        <button type="button" onClick={voltar}>Voltar</button>
       </div>
     </>
   )
