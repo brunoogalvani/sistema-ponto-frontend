@@ -1,8 +1,10 @@
 .dashboard-container {
-    background: #ecebeb;
+    background: #f1f1f1;
     width: 600px;
     height: 500px;
-    border-radius: 20px;
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0, 0.2);
     margin: 0 auto;
     padding: 20px;
     display: flex;
@@ -12,10 +14,10 @@
 
         & button {
             font-weight: 600;
-            background: #f5f4f4;
+            background: #ffffff;
             display: flex;
             justify-content: center;
-            border: 1px solid #b6b6b6;
+            border: 1px solid #d1d1d1;
             border-radius: 20px;
             width: 200px;
             margin-top: 40px;
@@ -25,7 +27,11 @@
         }
         
         & button:hover {
-            background: #ffffff;
+            background: #eeeeee;
+        }
+    
+        & button:active {
+            background: #f7f7f7;
         }
         
         & select {
@@ -45,9 +51,10 @@
 
     & .pontos-dia {
         height: auto;
+        box-shadow: 0px 0px 0px 0px;
     }
 
     & .pontos-dia:first-child {
         margin-top: 0;
-    }
+        }
 }

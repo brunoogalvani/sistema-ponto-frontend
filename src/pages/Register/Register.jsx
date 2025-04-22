@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import './Register.css'
 import api from '../../services/api'
+import Header from '../../components/Header/Header';
 
 function Register() {
 
@@ -42,16 +43,19 @@ function Register() {
 
     return (
         <>
-            <div className='register-container'>
-                <form className='register-form' onKeyDown={handleKeyPress}>
-                    <h1>Cadastre-se</h1>
-                    <input placeholder='Nome' name='name' type='text' ref={inputName} autoComplete='off' />
-                    <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
-                    <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />
-                    <button type='button' onClick={cadastrar}>Cadastrar</button>
-                    <span>Já possui cadastro? <Link to ='/'>Volte para o Login</Link></span>
-                </form>
-            </div>
+            <Header />
+            <main>
+                <div className='register-container'>
+                    <form className='register-form' onKeyDown={handleKeyPress}>
+                        <h1>Cadastre-se</h1>
+                        <input placeholder='Nome' name='name' type='text' ref={inputName} autoComplete='off' />
+                        <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
+                        <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />
+                        <button type='button' onClick={cadastrar}>Cadastrar</button>
+                        <span>Já possui cadastro? <Link to ='/'>Volte para o Login</Link></span>
+                    </form>
+                </div>
+            </main>
         </>
     )
 }

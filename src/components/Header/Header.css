@@ -1,0 +1,71 @@
+body {
+    overflow-y: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    height: 80px;
+    background-color: #f1f1f1;
+    align-items: center;
+    box-shadow: 0px 1px 10px 1px rgba(0,0,0, 0.2);
+
+    & .header-group {
+        display: flex;
+        gap: 100px;
+        margin-left: 50px;
+    }
+
+    & .conta-group {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        margin-right: 50px;
+    }
+
+    & .conta {
+        display: flex;
+        text-align: start;
+        gap: 10px;
+        width: 140px;
+        transition: .5s;
+    }
+
+    & .verificado {
+        width: auto;
+        align-items: center;
+    }
+
+    & button {
+        padding: 10px;
+        border: 0;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: transparent;
+        transition: .5s;
+    }
+
+    & button:hover {
+        box-shadow: 0px 0px 10px 0.5px;
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: calc(100vh - 80px);
+}
+
+button {
+    height:min-content;
+}
+
+i {
+    font-size: 32px;
+}
+
