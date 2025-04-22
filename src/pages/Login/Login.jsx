@@ -7,32 +7,29 @@ import Header from '../../components/Header/Header'
 function Login() {
 
     const navigate = useNavigate()
-    const inputLogin = useRef()
+    const inputEmail = useRef()
     const inputPassword = useRef()
 
-    async function autenticarUser() {
+    async function autenticar() {
         try {
             const response = await api.post('/auth/login', {
-                login: inputLogin.current.value,
+                email: inputEmail.current.value,
                 password: inputPassword.current.value
             })
             
-            if (response.status === 200) {
-                
+            if (response.status === 200) {  
                 sessionStorage.setItem("userId", response.data.id);
-                navigate('/registrar-ponto');
-                
+                navigate('/');
             }
         } catch (error) {
             console.error("Erro na autenticação", error);
             alert("Usuário e/ou Senha Inválidos");
         }
-
     }
 
     function handleKeyPress(event) {
         if (event.key === 'Enter') {
-            autenticarUser();
+            autenticar();
         }
     }
 
@@ -43,9 +40,9 @@ function Login() {
                 <div className='login-container'>
                     <form className='login-form' onKeyDown={handleKeyPress}>
                         <h1>Faça seu Login</h1>
-                        <input placeholder='Email' name='email' type='email' ref={inputLogin} autoComplete='off' />
+                        <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
                         <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />
-                        <button type='button' onClick={autenticarUser}>Entrar</button>
+                        <button type='button' onClick={autenticar}>Entrar</button>
                         <span>Não possui cadastro? <Link to ='/register'>Registre-se aqui</Link></span>
                     </form>
                 </div>
