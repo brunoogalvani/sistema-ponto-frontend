@@ -6,6 +6,7 @@ import AreaAdmin from './pages/AreaAdmin/AreaAdmin.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx'
+import Conta from './pages/Conta/Conta.jsx';
 
 function App() {
 
@@ -14,12 +15,13 @@ function App() {
         <Routes>
             <Route index element={<Home />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />}></Route>
+            <Route path="/login" element={<Login />} />
 
             <Route element={<ProtectedRoute />}>
               <Route path="/registrar-ponto" element={<RegistrarPonto />} />
-              <Route path="/seus-pontos"></Route>
-              <Route path="/solicitacoes"></Route>
+              <Route path="/seus-pontos" />
+              <Route path="/solicitacoes" />
+              <Route path="/conta" element={<Conta />} />
             </Route>
 
             <Route element={<ProtectedRoute requiredRole={'ADMIN'}/>}>

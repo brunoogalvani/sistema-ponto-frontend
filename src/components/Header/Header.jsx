@@ -11,7 +11,11 @@ function Header() {
     const [name, setName] = useState("")
 
     useEffect(() => {
-        validarRole()
+        const interval = setInterval(() => {
+            validarRole()
+        }, 50);
+        
+        return () => clearInterval(interval)
     }, [userId]);
     
     async function validarRole() {

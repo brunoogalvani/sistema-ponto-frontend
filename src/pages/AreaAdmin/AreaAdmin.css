@@ -57,4 +57,8 @@
     & .pontos-dia:first-child {
         margin-top: 0;
         }
+
+    & .sem-ponto-container {
+        box-shadow: 0px 0px 0px 0px;
+    }
 }

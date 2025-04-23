@@ -27,7 +27,7 @@ function ProtectedRoute({ requiredRole }) {
 
     if (!userId) return <Navigate to='/' />;
 
-    if (requiredRole && userRole !== requiredRole) return <Navigate to='/home' />;
+    if (requiredRole && userRole !== requiredRole) return <Navigate to='/' />;
 
     return <Outlet />
 }

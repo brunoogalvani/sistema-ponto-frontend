@@ -59,11 +59,6 @@ function RegistrarPonto() {
     }
   }
 
-  function voltar() {
-    sessionStorage.setItem('userId', '');
-    navigate('/')
-  }
-
   return (
     <>
       <Header />
@@ -71,7 +66,6 @@ function RegistrarPonto() {
         <div className="registrar-container">
           <h1>Registro de Ponto</h1>
           <button type="button" onClick={baterPonto}>Registrar Ponto</button>
-          <button type="button" onClick={voltar}>Voltar</button>
         </div>
 
           {ponto ? (

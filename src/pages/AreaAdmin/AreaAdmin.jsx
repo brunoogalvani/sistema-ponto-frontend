@@ -48,11 +48,6 @@ function AreaAdmin() {
     }
   }
 
-  function voltar() {
-    sessionStorage.setItem('userId', '');
-    navigate('/')
-  }
-
   return (
     <>
       <Header />
@@ -104,7 +99,6 @@ function AreaAdmin() {
               </div>
             )}
           </div>
-          <button type="button" onClick={voltar}>Voltar</button>
         </div>
       </main>
     </>
