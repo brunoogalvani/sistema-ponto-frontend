@@ -17,8 +17,6 @@ function Conta() {
     useEffect(() => {
         async function getUser() {
             const response = await api.get(`/users/${userId}`)
-            setName(response.data.name);
-            setEmail(response.data.email);
             setNameAtual(response.data.name)
             setEmailAtual(response.data.email)
         }
@@ -38,6 +36,8 @@ function Conta() {
             setEmailAtual(email)
             setPassword("")
             setIsEditing(false)
+            setName("")
+            setEmail("")
 
             alert("Informações atualizadas com sucesso!");
         } catch (error) {

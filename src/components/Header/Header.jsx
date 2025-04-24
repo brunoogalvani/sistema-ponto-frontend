@@ -20,9 +20,11 @@ function Header() {
     
     async function validarRole() {
         try {
-            const response = await api.get(`/users/${userId}`)
-            setRole(response.data.role)
-            setName(response.data.name)
+            if (userId != null) {
+                const response = await api.get(`/users/${userId}`)
+                setRole(response.data.role)
+                setName(response.data.name)
+            }
         } catch (error) {
             console.error("Erro na autenticação", error);
         }
