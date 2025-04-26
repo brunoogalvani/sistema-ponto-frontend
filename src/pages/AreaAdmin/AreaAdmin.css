@@ -13,14 +13,13 @@
     align-items: center;
 
         & button {
-            font-weight: 600;
+            font-size: 16px;
             background: #ffffff;
             display: flex;
             justify-content: center;
             border: 1px solid #d1d1d1;
-            border-radius: 20px;
+            border-radius: 10px;
             width: 200px;
-            margin-top: 40px;
             padding: 10px;
             cursor: pointer;
             transition: .3s;
@@ -33,32 +32,4 @@
         & button:active {
             background: #f7f7f7;
         }
-        
-        & select {
-            height: 25px;
-            width: 300px;
-            padding-left: 10px;
-            border: 1px solid #b6b6b6;
-            border-radius: 10px;
-            outline: none;
-        }
-}
-
-.pontos {
-    height: 200px;
-    align-content: center;
-    overflow-y: auto;
-
-    & .pontos-dia {
-        height: auto;
-        box-shadow: 0px 0px 0px 0px;
-    }
-
-    & .pontos-dia:first-child {
-        margin-top: 0;
-        }
-
-    & .sem-ponto-container {
-        box-shadow: 0px 0px 0px 0px;
-    }
 }

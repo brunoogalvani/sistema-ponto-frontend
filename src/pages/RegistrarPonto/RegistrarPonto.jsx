@@ -64,7 +64,7 @@ function RegistrarPonto() {
       <Header />
       <main>
         <div className="registrar-container">
-          <h1>Registro de Ponto</h1>
+          <h1>Registrar Ponto</h1>
           <button type="button" onClick={baterPonto}>Registrar Ponto</button>
         </div>
 

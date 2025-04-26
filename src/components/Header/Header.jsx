@@ -20,7 +20,7 @@ function Header() {
     
     async function validarRole() {
         try {
-            if (userId != null) {
+            if (userId) {
                 const response = await api.get(`/users/${userId}`)
                 setRole(response.data.role)
                 setName(response.data.name)

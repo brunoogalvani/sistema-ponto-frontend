@@ -46,6 +46,12 @@ function Conta() {
         }
     }
 
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            updateUser();
+        }
+    }
+
     return (
         <>
             <Header />

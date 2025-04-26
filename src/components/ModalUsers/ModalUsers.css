@@ -1,0 +1,111 @@
+.main-users {
+    background-color: rgba(0,0,0, 0.6);
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+}
+
+.modal-users-container {
+    background: #f1f1f1;
+    width: 600px;
+    height: 500px;
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0, 0.2);
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+        & .usuarios {
+            height: 290px;
+            overflow-y: auto;
+        }
+
+        & .usuario:first-child {
+            margin-top: 0;
+        }
+
+        & .usuario {
+            background: #f8f8f8;
+            width: 500px;
+            height: auto;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 150px auto auto;
+            grid-gap: 10px;
+            margin-top: 20px;
+
+            & span {
+                color: black;
+                font-weight: bold;
+                grid-column: 1;
+                align-content: center;
+            }
+
+            & .dados {
+                align-content: center;
+            }
+
+            & i {
+                color: rgb(255, 0, 0);
+                cursor: pointer;
+            }
+
+            & .trash {
+                grid-column: 3;
+                grid-row: 2;
+                text-align: center;
+            }
+        }        
+
+        & button {
+            background: #ffffff;
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #d1d1d1;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        
+        & button:hover {
+            background: #eeeeee;
+        }
+    
+        & button:active {
+            background: #f7f7f7;
+        }
+        
+        & select {
+            height: 25px;
+            width: 300px;
+            padding-left: 10px;
+            border: 1px solid #b6b6b6;
+            border-radius: 10px;
+            outline: none;
+        }
+}
+
+.pontos {
+    height: 200px;
+    align-content: center;
+    overflow-y: auto;
+
+    & .pontos-dia {
+        height: auto;
+        box-shadow: 0px 0px 0px 0px;
+    }
+
+    & .pontos-dia:first-child {
+        margin-top: 0;
+        }
+
+    & .sem-ponto-container {
+        box-shadow: 0px 0px 0px 0px;
+    }
+}

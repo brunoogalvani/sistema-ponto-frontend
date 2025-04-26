@@ -1,18 +1,16 @@
 import { useRef } from 'react'
-import { useNavigate, Link } from 'react-router-dom';
-import './Register.css'
+import './ModalCriarUser.css'
 import api from '../../services/api'
-import Header from '../../components/Header/Header';
 
-function Register() {
+function ModalCriarUser({ onClose }) {
 
-    const navigate = useNavigate();
     const inputName = useRef();
     const inputEmail = useRef();
     const inputPassword = useRef();
+    const inputRole = useRef();
 
-    async function cadastrar() {
-        if (!inputName.current.value || !inputEmail.current.value || !inputPassword.current.value) {
+    async function criarUser() {
+        if (!inputName.current.value || !inputEmail.current.value || !inputPassword.current.value || !inputRole.current.value) {
             alert("Todos os campos devem ser preenchidos!");
             return;
         }
@@ -22,12 +20,12 @@ function Register() {
                 name: inputName.current.value,
                 email: inputEmail.current.value,
                 password: inputPassword.current.value,
-                role: 'USER'
+                role: inputRole.current.value
             })
 
-            if (response.status === 201) {
+            if (response.status === 200) {
                 alert('Usuário criado com sucesso!')
-                autenticar()
+                onClose()
             }
         } catch (error) {
             console.error("Erro no cadastro", error);
@@ -35,46 +33,34 @@ function Register() {
         }
     }
 
-    async function autenticar() {
-        try {
-            const response = await api.post('/auth/login', {
-                email: inputEmail.current.value,
-                password: inputPassword.current.value
-            })
-            
-            if (response.status === 200) {
-                sessionStorage.setItem("userId", response.data.id);
-                navigate('/');
-            }
-        } catch (error) {
-            console.error("Erro na autenticação", error);
-            alert("Usuário e/ou Senha Inválidos");
-        }
-    }
-
     function handleKeyPress(event) {
         if (event.key === 'Enter') {
-            cadastrar();
+            criarUser();
         }
     }
 
     return (
         <>
-            <Header />
-            <main>
-                <div className='register-container'>
+            <main className='main-criar-user'>
+                <div className='criar-user-container'>
                     <form className='register-form' onKeyDown={handleKeyPress}>
-                        <h1>Cadastre-se</h1>
+                        <h1>Cadastre um usuário</h1>
                         <input placeholder='Nome' name='name' type='text' ref={inputName} autoComplete='off' />
                         <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
                         <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />
-                        <button type='button' onClick={cadastrar}>Cadastrar</button>
-                        <span>Já possui cadastro? <Link to ='/login'>Volte para o Login</Link></span>
+                        <select ref={inputRole}>
+                            <option value="" disabled selected>Selecione um Role</option>
+                            <option value="USER">USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                        </select>
+                        <button type='button' onClick={criarUser}>Cadastrar</button>
                     </form>
+
+                    <button onClick={onClose}>Fechar</button>
                 </div>
             </main>
         </>
     )
 }
 
-export default Register
+export default ModalCriarUser
