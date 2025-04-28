@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import './ModalCriarUser.css'
 import api from '../../services/api'
 
-function ModalCriarUser({ onClose }) {
+function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
 
     const inputName = useRef();
     const inputEmail = useRef();
@@ -39,9 +39,14 @@ function ModalCriarUser({ onClose }) {
         }
     }
 
+    const handleOutClick = (e) => {
+        if (e.target.id !== id) return
+        onClose()
+      }
+
     return (
         <>
-            <main className='main-criar-user'>
+            <main id='main' className='main-criar-user' onClick={handleOutClick}>
                 <div className='criar-user-container'>
                     <form className='register-form' onKeyDown={handleKeyPress}>
                         <h1>Cadastre um usuário</h1>

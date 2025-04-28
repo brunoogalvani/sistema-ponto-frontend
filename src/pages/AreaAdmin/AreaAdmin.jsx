@@ -20,8 +20,8 @@ function AreaAdmin() {
         </div>
       </main>
 
-        {isModalPontosOpen && <ModalPontos onClose={() => setIsModalPontosOpen(false)} />}
-        {isModalUsersOpen && <ModalUsers onClose={() => setIsModalUsersOpen(false)} />}
+        {isModalPontosOpen && <ModalPontos onClose={() => setIsModalPontosOpen(false)} outClickClose={true} />}
+        {isModalUsersOpen && <ModalUsers onClose={() => setIsModalUsersOpen(false)} outClickClose={true} />}
     </>
   )
 }

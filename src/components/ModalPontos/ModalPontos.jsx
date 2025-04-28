@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './ModalPontos.css'
 import api from '../../services/api';
 
-function ModalPontos({ onClose }) {
+function ModalPontos({ onClose, outClickClose = false, id = 'main' }) {
 
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState("");
@@ -44,9 +44,14 @@ function ModalPontos({ onClose }) {
     }
   }
 
+  const handleOutClick = (e) => {
+    if (e.target.id !== id) return
+    onClose()
+  }
+
   return (
     <>
-      <main className='main-pontos'>
+      <main id='main' className='main-pontos' onClick={handleOutClick}>
         <div className="modal-pontos-container">
           <select value={selectedUserId} onChange={handleSelectChange}>
             <option value="" disabled selected>Selecione</option>

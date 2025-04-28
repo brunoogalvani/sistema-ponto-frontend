@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import './ModalUsers.css'
 import api from '../../services/api';
-import ModalCriarUser from '../CriarUser/ModalCriarUser';
+import ModalCriarUser from '../ModalCriarUser/ModalCriarUser';
 
-function ModalUsers({ onClose }) {
+function ModalUsers({ onClose, outClickClose = false, id = 'main' }) {
 
     const [users, setUsers] = useState([]);
     const [isModalCriarUserOpen, setIsModalCriarUserOpen] = useState(false)
@@ -33,9 +33,14 @@ function ModalUsers({ onClose }) {
         }
     }
 
+    const handleOutClick = (e) => {
+        if (e.target.id !== id) return
+        onClose()
+    }
+
     return (
         <>
-            <main className='main-users'>
+            <main id='main' className='main-users' onClick={handleOutClick}>
                 <div className="modal-users-container">
                     <div className="usuarios">
                         {users.length!==0 ?
@@ -62,7 +67,7 @@ function ModalUsers({ onClose }) {
                 </div>
             </main>
 
-            {isModalCriarUserOpen && <ModalCriarUser onClose={() => setIsModalCriarUserOpen(false)} />}
+            {isModalCriarUserOpen && <ModalCriarUser onClose={() => setIsModalCriarUserOpen(false)} outClickClose={true} />}
         </>
     )
 }
