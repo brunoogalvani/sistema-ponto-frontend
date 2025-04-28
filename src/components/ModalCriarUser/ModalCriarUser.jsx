@@ -23,7 +23,7 @@ function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
                 role: inputRole.current.value
             })
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 alert('Usuário criado com sucesso!')
                 onClose()
             }
@@ -42,7 +42,7 @@ function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
     const handleOutClick = (e) => {
         if (e.target.id !== id) return
         onClose()
-      }
+    }
 
     return (
         <>
