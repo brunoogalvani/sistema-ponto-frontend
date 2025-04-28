@@ -29,6 +29,28 @@
         outline: none;
         text-align: center;
     }
+
+    & .password-input {
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        width: 270px;
+        gap: 8px;
+        border: 1px solid #d1d1d1;
+        border-radius: 5px;
+    }
+    
+    & .password-input input {
+        flex: 1;
+        border: 0;
+        padding-left: 35px;
+    }
+
+    & .password-input i {
+        font-size: 22px;
+        cursor: pointer;
+        padding-right: 5px;
+    }
     
     & button {
         background: #ffffff;

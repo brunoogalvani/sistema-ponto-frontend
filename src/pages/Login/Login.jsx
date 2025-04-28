@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import './Login.css'
 import api from '../../services/api'
@@ -9,6 +9,7 @@ function Login() {
     const navigate = useNavigate()
     const inputEmail = useRef()
     const inputPassword = useRef()
+    const [showPassword, setShowPassword] = useState(false)
 
     async function autenticar() {
         try {
@@ -41,7 +42,10 @@ function Login() {
                     <form className='login-form' onKeyDown={handleKeyPress}>
                         <h1>Faça seu Login</h1>
                         <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
-                        <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />
+                        <div className="password-input">
+                            <input placeholder='Senha' name='senha' type={showPassword ? 'text' : 'password'} ref={inputPassword} autoComplete='off' />
+                            <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} onClick={() => setShowPassword(!showPassword)}></i>
+                        </div>
                         <button type='button' onClick={autenticar}>Entrar</button>
                         <span>Não possui cadastro? <Link to ='/register'>Registre-se aqui</Link></span>
                     </form>

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import './ModalCriarUser.css'
 import api from '../../services/api'
 
@@ -8,6 +8,7 @@ function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
     const inputEmail = useRef();
     const inputPassword = useRef();
     const inputRole = useRef();
+    const [showPassword, setShowPassword] = useState(false)
 
     async function criarUser() {
         if (!inputName.current.value || !inputEmail.current.value || !inputPassword.current.value || !inputRole.current.value) {
@@ -52,9 +53,12 @@ function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
                         <h1>Cadastre um usuário</h1>
                         <input placeholder='Nome' name='name' type='text' ref={inputName} autoComplete='off' />
                         <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
-                        <input placeholder='Senha' name='senha' type='password' ref={inputPassword} autoComplete='off' />
-                        <select ref={inputRole}>
-                            <option value="" disabled selected>Selecione um Role</option>
+                        <div className="password-input">
+                            <input placeholder='Senha' name='senha' type={showPassword ? 'text' : 'password'} ref={inputPassword} autoComplete='off' />
+                            <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} onClick={() => setShowPassword(!showPassword)}></i>
+                        </div>
+                        <select ref={inputRole} defaultValue=''>
+                            <option value="" disabled>Selecione um Role</option>
                             <option value="USER">USER</option>
                             <option value="ADMIN">ADMIN</option>
                         </select>
