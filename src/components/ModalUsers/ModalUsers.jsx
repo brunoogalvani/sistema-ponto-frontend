@@ -1,13 +1,16 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import './ModalUsers.css'
 import api from '../../services/api';
 import ModalCriarUser from '../ModalCriarUser/ModalCriarUser';
+import Alert from '../Alert/Alert';
 
-function ModalUsers({ onClose, outClickClose = false, id = 'main' }) {
+function ModalUsers({ onClose, id = 'main' }) {
 
     const [users, setUsers] = useState([]);
     const [isModalCriarUserOpen, setIsModalCriarUserOpen] = useState(false)
     const userId = sessionStorage.getItem('userId');
+    
+    const [alertMessage, setAlertMessage] = useState(null)
 
     useEffect(() => {
         getUsers()
@@ -26,9 +29,11 @@ function ModalUsers({ onClose, outClickClose = false, id = 'main' }) {
     async function deletarUser(id) {
         try {
             await api.delete(`/users/${id}`)
-            alert('Usuário deletado com sucesso!')
+            // alert('Usuário deletado com sucesso!')
+            setAlertMessage('Usuário deletado com sucesso!')
             getUsers();
         } catch (error) {
+            setAlertMessage('Erro ao deletar usuário')
             console.error("Erro ao deletar usuário: ", error)
         }
     }
@@ -36,6 +41,10 @@ function ModalUsers({ onClose, outClickClose = false, id = 'main' }) {
     const handleOutClick = (e) => {
         if (e.target.id !== id) return
         onClose()
+    }
+
+    const handleAlertClose = () => {
+        setAlertMessage(null)
     }
 
     return (
@@ -67,7 +76,8 @@ function ModalUsers({ onClose, outClickClose = false, id = 'main' }) {
                 </div>
             </main>
 
-            {isModalCriarUserOpen && <ModalCriarUser onClose={() => setIsModalCriarUserOpen(false)} outClickClose={true} />}
+            {isModalCriarUserOpen && <ModalCriarUser onClose={() => setIsModalCriarUserOpen(false)} />}
+            {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
         </>
     )
 }

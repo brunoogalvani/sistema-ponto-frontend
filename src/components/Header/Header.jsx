@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import './Header.css'
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api'
+import Alert from '../Alert/Alert';
 
 function Header() {
 
@@ -12,6 +13,8 @@ function Header() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const dropdownRef = useRef()
     const dropdownContainerRef = useRef()
+
+    const [alertMessage, setAlertMessage] = useState(null)
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -49,11 +52,16 @@ function Header() {
 
     function voltar() {
         sessionStorage.setItem('userId', '');
+        setAlertMessage('Desconectado com sucesso')
         navigate('/')
     }
 
     function toggleDropdown() {
         setIsDropdownOpen(!isDropdownOpen)
+    }
+
+    const handleAlertClose = () => {
+        setAlertMessage(null)
     }
 
     return (
@@ -98,6 +106,8 @@ function Header() {
                     )}
                 </div>
             </header>
+
+            {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
         </>
     )
 }

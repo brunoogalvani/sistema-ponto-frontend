@@ -2,6 +2,7 @@ import './Conta.css'
 import api from '../../services/api';
 import Header from '../../components/Header/Header';
 import { useEffect, useState } from 'react';
+import Alert from '../../components/Alert/Alert';
 
 function Conta() {
 
@@ -13,6 +14,8 @@ function Conta() {
     const [nameAtual, setNameAtual] = useState("")
     const [emailAtual, setEmailAtual] = useState("")
     const [isEditing, setIsEditing] = useState(false)
+
+    const [alertMessage, setAlertMessage] = useState(null)
 
     useEffect(() => {
         async function getUser() {
@@ -26,6 +29,12 @@ function Conta() {
     
     async function updateUser() {
         try {
+            if(!name && !email && !password) {
+                setIsEditing(false)
+                setAlertMessage('Nenhuma informação foi alterada')
+                return
+            }
+
             await api.put(`/users/${userId}`, {
                 name, 
                 email, 
@@ -39,10 +48,10 @@ function Conta() {
             setName("")
             setEmail("")
 
-            alert("Informações atualizadas com sucesso!");
+            setAlertMessage('Informações atualizadas com sucesso!')
         } catch (error) {
             console.error("Erro na atualização", error);
-            alert("Erro ao atualizar as informações.");
+            setAlertMessage('Erro ao atualizar as informações.')
         }
     }
 
@@ -50,6 +59,10 @@ function Conta() {
         if (event.key === 'Enter') {
             updateUser();
         }
+    }
+
+    const handleAlertClose = () => {
+        setAlertMessage(null)
     }
 
     return (
@@ -89,10 +102,12 @@ function Conta() {
                     {!isEditing ? (
                         <button type='button' onClick={() => setIsEditing(true)}>Editar</button>
                     ) : (
-                        <button type='button' onClick={updateUser}>Salvar</button>
+                        <button type='button' onClick={updateUser} onKeyDown={handleKeyPress}>Salvar</button>
                     )}
                 </div>
             </main>
+
+            {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
         </>
     )
 }

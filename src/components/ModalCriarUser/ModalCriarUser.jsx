@@ -1,36 +1,44 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import './ModalCriarUser.css'
 import api from '../../services/api'
+import Alert from '../Alert/Alert';
 
-function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
+function ModalCriarUser({ onClose, id = 'main' }) {
 
-    const inputName = useRef();
-    const inputEmail = useRef();
-    const inputPassword = useRef();
-    const inputRole = useRef();
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [role, setRole] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+    
+    const [alertMessage, setAlertMessage] = useState(null)
 
     async function criarUser() {
-        if (!inputName.current.value || !inputEmail.current.value || !inputPassword.current.value || !inputRole.current.value) {
-            alert("Todos os campos devem ser preenchidos!");
+        if (!name || !email || !password || !role) {
+            // alert("Todos os campos devem ser preenchidos!");
+            setAlertMessage('Todos os campos devem ser preenchidos!')
             return;
         }
 
         try {
             const response = await api.post('/users/register', {
-                name: inputName.current.value,
-                email: inputEmail.current.value,
-                password: inputPassword.current.value,
-                role: inputRole.current.value
+                name: name,
+                email: email,
+                password: password,
+                role: role
             })
 
             if (response.status === 201) {
-                alert('Usuário criado com sucesso!')
-                onClose()
+                setAlertMessage("Usuário criado!")
+                setName('')
+                setEmail('')
+                setPassword('')
+                setRole('')
             }
         } catch (error) {
             console.error("Erro no cadastro", error);
-            alert("Usuário já existe");
+            // alert("Usuário já existe");
+            setAlertMessage('Usuário já existe')
         }
     }
 
@@ -44,6 +52,10 @@ function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
         if (e.target.id !== id) return
         onClose()
     }
+    
+    const handleAlertClose = () => {
+        setAlertMessage(null)
+    }
 
     return (
         <>
@@ -51,13 +63,37 @@ function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
                 <div className='criar-user-container'>
                     <form className='register-form' onKeyDown={handleKeyPress}>
                         <h1>Cadastre um usuário</h1>
-                        <input placeholder='Nome' name='name' type='text' ref={inputName} autoComplete='off' />
-                        <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
+
+                        <input
+                            placeholder='Nome'
+                            name='name'
+                            type='text'
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                            autoComplete='off' 
+                        />
+
+                        <input
+                            placeholder='Email'
+                            name='email'
+                            type='email'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            autoComplete='off'
+                        />
+
                         <div className="password-input">
-                            <input placeholder='Senha' name='senha' type={showPassword ? 'text' : 'password'} ref={inputPassword} autoComplete='off' />
+                            <input
+                                placeholder='Senha'
+                                type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+
                             <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} onClick={() => setShowPassword(!showPassword)}></i>
                         </div>
-                        <select ref={inputRole} defaultValue=''>
+
+                        <select value={role} onChange={e => setRole(e.target.value)}>
                             <option value="" disabled>Selecione um Role</option>
                             <option value="USER">USER</option>
                             <option value="ADMIN">ADMIN</option>
@@ -68,6 +104,8 @@ function ModalCriarUser({ onClose, outClickClose = false, id = 'main' }) {
                     <button onClick={onClose}>Fechar</button>
                 </div>
             </main>
+
+            {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
         </>
     )
 }

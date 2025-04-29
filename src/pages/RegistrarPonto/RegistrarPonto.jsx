@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 import './RegistrarPonto.css'
 import api from '../../services/api'
-import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
+import Alert from '../../components/Alert/Alert';
 
 function RegistrarPonto() {
 
-  const navigate = useNavigate()
-
-  const [userName, setUserName] = useState("");
   const userId = sessionStorage.getItem('userId');
 
   const [ponto, setPonto] = useState("");
@@ -18,6 +15,8 @@ function RegistrarPonto() {
   const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
   const ano = dataAtual.getFullYear();
   const dataFormatada = `${dia}-${mes}-${ano}`;
+
+  const [alertMessage, setAlertMessage] = useState(null)
 
   useEffect(() => {
     getPonto()
@@ -33,30 +32,18 @@ function RegistrarPonto() {
     }
   }
 
-  useEffect(() => {
-    async function getUserName() {
-      try {
-        const response = await api.get(`/users/${userId}`);
-        setUserName(response.data.name)
-      } catch (error) {
-        console.error("Erro ao buscar o usuário:", error);
-      }
-    }
-
-      if (userId) {
-        getUserName();
-      }
-
-  }, [userId]);
-
   async function baterPonto() {
     try {
       await api.post(`/pontos/bater/${userId}`);
       getPonto();
     } catch (error) {
-      alert("Todas as marcações de ponto do dia já foram preenchidas")
+      setAlertMessage('Todas as marcações de ponto do dia já foram preenchidas')
       console.error("Erro ao registrar ponto:", error);
     }
+  }
+
+  const handleAlertClose = () => {
+    setAlertMessage(null)
   }
 
   return (
@@ -103,6 +90,8 @@ function RegistrarPonto() {
             </div>
           )}
       </main>
+
+      {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
     </>
   )
 }

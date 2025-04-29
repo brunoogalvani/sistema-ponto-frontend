@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
 import './ModalPontos.css'
 import api from '../../services/api';
+import Alert from '../Alert/Alert';
 
-function ModalPontos({ onClose, outClickClose = false, id = 'main' }) {
+function ModalPontos({ onClose, id = 'main' }) {
 
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState("");
   const [pontos, setPontos] = useState([])
+  
+  const [alertMessage, setAlertMessage] = useState(null)
 
   useEffect(() => {
     getUsers()
@@ -47,6 +50,10 @@ function ModalPontos({ onClose, outClickClose = false, id = 'main' }) {
   const handleOutClick = (e) => {
     if (e.target.id !== id) return
     onClose()
+  }
+
+  const handleAlertClose = () => {
+    setAlertMessage(null)
   }
 
   return (
@@ -103,6 +110,8 @@ function ModalPontos({ onClose, outClickClose = false, id = 'main' }) {
           <button onClick={onClose}>Fechar</button>
         </div>
       </main>
+
+      {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
     </>
   )
 }

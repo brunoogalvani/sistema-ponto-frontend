@@ -1,46 +1,49 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import './Register.css'
 import api from '../../services/api'
 import Header from '../../components/Header/Header';
+import Alert from '../../components/Alert/Alert';
 
 function Register() {
 
     const navigate = useNavigate();
-    const inputName = useRef();
-    const inputEmail = useRef();
-    const inputPassword = useRef();
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
 
+    const [alertMessage, setAlertMessage] = useState(null)
+
     async function cadastrar() {
-        if (!inputName.current.value || !inputEmail.current.value || !inputPassword.current.value) {
-            alert("Todos os campos devem ser preenchidos!");
+        if (!name || !email || !password) {
+            setAlertMessage('Todos os campos devem ser preenchidos!')
             return;
         }
 
         try {
             const response = await api.post('/users/register', {
-                name: inputName.current.value,
-                email: inputEmail.current.value,
-                password: inputPassword.current.value,
+                name: name,
+                email: email,
+                password: password,
                 role: 'USER'
             })
 
             if (response.status === 201) {
-                alert('Usuário criado com sucesso!')
+                setAlertMessage('Usuário criado com sucesso!')
                 autenticar()
             }
         } catch (error) {
             console.error("Erro no cadastro", error);
-            alert("Usuário já existe");
+            setAlertMessage('Usuário já existe')
         }
     }
 
     async function autenticar() {
         try {
             const response = await api.post('/auth/login', {
-                email: inputEmail.current.value,
-                password: inputPassword.current.value
+                email: email,
+                password: password
             })
             
             if (response.status === 200) {
@@ -49,7 +52,7 @@ function Register() {
             }
         } catch (error) {
             console.error("Erro na autenticação", error);
-            alert("Usuário e/ou Senha Inválidos");
+            setAlertMessage('Usuário e/ou Senha Inválidos')
         }
     }
 
@@ -59,6 +62,10 @@ function Register() {
         }
     }
 
+    const handleAlertClose = () => {
+        setAlertMessage(null)
+    }
+
     return (
         <>
             <Header />
@@ -66,10 +73,36 @@ function Register() {
                 <div className='register-container'>
                     <form className='register-form' onKeyDown={handleKeyPress}>
                         <h1>Cadastre-se</h1>
-                        <input placeholder='Nome' name='name' type='text' ref={inputName} autoComplete='off' />
-                        <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
+
+                        <input
+                            placeholder='Nome'
+                            name='name'
+                            type='text'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            autoComplete='off'
+                        />
+
+                        <input
+                            placeholder='Email'
+                            name='email'
+                            type='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            autoComplete='off'
+                        />
+
                         <div className="password-input">
-                            <input placeholder='Senha' name='senha' type={showPassword ? 'text' : 'password'} ref={inputPassword} autoComplete='off' />
+
+                            <input
+                                placeholder='Senha'
+                                name='senha'
+                                type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                autoComplete='off'
+                            />
+
                             <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} onClick={() => setShowPassword(!showPassword)}></i>
                         </div>
                         <button type='button' onClick={cadastrar}>Cadastrar</button>
@@ -77,6 +110,8 @@ function Register() {
                     </form>
                 </div>
             </main>
+
+            {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
         </>
     )
 }

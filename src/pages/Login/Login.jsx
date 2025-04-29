@@ -1,21 +1,24 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import './Login.css'
 import api from '../../services/api'
 import Header from '../../components/Header/Header'
+import Alert from '../../components/Alert/Alert'
 
 function Login() {
 
     const navigate = useNavigate()
-    const inputEmail = useRef()
-    const inputPassword = useRef()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+
+    const [alertMessage, setAlertMessage] = useState(null)
 
     async function autenticar() {
         try {
             const response = await api.post('/auth/login', {
-                email: inputEmail.current.value,
-                password: inputPassword.current.value
+                email: email,
+                password: password
             })
             
             if (response.status === 200) {  
@@ -34,6 +37,10 @@ function Login() {
         }
     }
 
+    const handleAlertClose = () => {
+        setAlertMessage(null)
+    }
+
     return (
         <>
             <Header />
@@ -41,9 +48,27 @@ function Login() {
                 <div className='login-container'>
                     <form className='login-form' onKeyDown={handleKeyPress}>
                         <h1>Faça seu Login</h1>
-                        <input placeholder='Email' name='email' type='email' ref={inputEmail} autoComplete='off' />
+
+                        <input
+                            placeholder='Email'
+                            name='email'
+                            type='email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            autoComplete='off'
+                        />
+
                         <div className="password-input">
-                            <input placeholder='Senha' name='senha' type={showPassword ? 'text' : 'password'} ref={inputPassword} autoComplete='off' />
+
+                            <input
+                                placeholder='Senha'
+                                name='senha'
+                                type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                autoComplete='off'
+                            />
+
                             <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} onClick={() => setShowPassword(!showPassword)}></i>
                         </div>
                         <button type='button' onClick={autenticar}>Entrar</button>
@@ -51,6 +76,8 @@ function Login() {
                     </form>
                 </div>
             </main>
+
+            {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
         </>
     )
 }

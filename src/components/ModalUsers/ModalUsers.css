@@ -31,13 +31,14 @@
 
         & .usuario {
             background: #f8f8f8;
+            border-radius: 10px;
             width: 500px;
             height: auto;
             padding: 15px;
             display: grid;
-            grid-template-columns: 150px auto auto;
+            grid-template-columns: 150px 250px auto;
             grid-gap: 10px;
-            margin-top: 20px;
+            margin: 20px 10px 0 0;
 
             & span {
                 color: black;
