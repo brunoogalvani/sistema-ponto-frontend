@@ -52,8 +52,10 @@ function Header() {
 
     function voltar() {
         sessionStorage.setItem('userId', '');
-        setAlertMessage('Desconectado com sucesso')
-        navigate('/')
+        setAlertMessage('Desconectado com sucesso!')
+        setTimeout(() => {
+            navigate('/')
+        }, 3000);
     }
 
     function toggleDropdown() {

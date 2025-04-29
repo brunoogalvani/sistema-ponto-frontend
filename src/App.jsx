@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx'
 import Conta from './pages/Conta/Conta.jsx';
+import SeusPontos from './pages/SeusPontos/SeusPontos.jsx';
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
 
             <Route element={<ProtectedRoute />}>
               <Route path="/registrar-ponto" element={<RegistrarPonto />} />
-              <Route path="/seus-pontos" />
+              <Route path="/seus-pontos" element={<SeusPontos />} />
               <Route path="/solicitacoes" />
               <Route path="/conta" element={<Conta />} />
             </Route>
