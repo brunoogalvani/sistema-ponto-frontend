@@ -1,8 +1,5 @@
-import './Home.css'
-
-import Header from '../../components/Header/Header';
+import Header from '../components/Header';
 import { useEffect, useState } from 'react';
-
 
 function Home() {
 
@@ -22,22 +19,21 @@ function Home() {
     return (
         <>
             <Header />
-            <main>
-                <div className="home-container">
+            <main className='flex flex-col justify-center items-center w-screen h-[calc(100vh-80px)]'>
+                <div className='h-[200px] mx-auto my-0 flex flex-col justify-evenly items-center'>
                     {userId ? (
                         <>
-                            <h1>Sistema de Ponto Eletrônico</h1>
+                            <h1 className='text-[32px] font-bold'>Sistema de Ponto Eletrônico</h1>
 
-                            <h2>Navegue nas abas para utilizar o sistema!</h2>
+                            <h2 className='text-2xl font-bold'>Navegue nas abas para utilizar o sistema!</h2>
                         </>
                     ) : (
                         <>
-                            <h1>Sistema de Ponto Eletrônico</h1>
+                            <h1 className='text-[32px] font-bold'>Sistema de Ponto Eletrônico</h1>
 
-                            <h2>Faça login ou cadastre-se para utilizar o sistema!</h2>
+                            <h2 className='text-2xl font-bold'>Faça login ou cadastre-se para utilizar o sistema!</h2>
                         </>
-                    )}
-                    
+                    )}   
                 </div>
             </main>
         </>

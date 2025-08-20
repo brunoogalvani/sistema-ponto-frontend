@@ -1,8 +1,7 @@
-import './Conta.css'
-import api from '../../services/api';
-import Header from '../../components/Header/Header';
+import api from '../services/api';
+import Header from '../components/Header';
 import { useEffect, useState } from 'react';
-import Alert from '../../components/Alert/Alert';
+import Alert from '../components/Alert';
 
 function Conta() {
 
@@ -68,12 +67,13 @@ function Conta() {
     return (
         <>
             <Header />
-            <main>
-                <div className='conta-container'>
-                    <h1>Alterar suas informações</h1>
-                    <div className="conta-info">
+            <main className='flex flex-col justify-center items-center w-screen h-[calc(100vh-80px)]'>
+                <div className='bg-[#f1f1f1] w-[500px] h-[400px] border border-[#d8d8d8] rounded-[10px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] mx-auto my-0 p-5 flex flex-col justify-evenly items-center'>
+                    <h1 className='text-[32px] font-bold'>Alterar suas informações</h1>
+                    <div className='h-[150px] w-[320px] flex content-between justify-between flex-wrap'>
                         <p>Nome: </p>
-                        <input 
+                        <input
+                            className={`w-[250px] h-[25px] text-sm border border-[#d1d1d1] rounded-[5px] outline-none text-center ${isEditing ? 'bg-white' : ''}`} 
                             placeholder={nameAtual}
                             type='text'
                             value={name}
@@ -82,7 +82,8 @@ function Conta() {
                         />
 
                         <p>Email: </p>
-                        <input 
+                        <input
+                            className={`w-[250px] h-[25px] text-sm border border-[#d1d1d1] rounded-[5px] outline-none text-center ${isEditing ? 'bg-white' : ''}`}
                             placeholder={emailAtual}
                             type='email'
                             value={email}
@@ -91,7 +92,8 @@ function Conta() {
                         />
 
                         <p>Senha: </p>
-                        <input 
+                        <input
+                            className={`w-[250px] h-[25px] text-sm border border-[#d1d1d1] rounded-[5px] outline-none text-center ${isEditing ? 'bg-white' : ''}`} 
                             placeholder='Nova Senha'
                             type='password'
                             value={password}
@@ -100,9 +102,9 @@ function Conta() {
                         />
                     </div>
                     {!isEditing ? (
-                        <button type='button' onClick={() => setIsEditing(true)}>Editar</button>
+                        <button className='bg-white w-[120px] h-[40px] text-base border border-[#d1d1d1] rounded-[10px] cursor-pointer duration-300 hover:bg-[#eeeeee] active:bg-[#f7f7f7]' type='button' onClick={() => setIsEditing(true)}>Editar</button>
                     ) : (
-                        <button type='button' onClick={updateUser} onKeyDown={handleKeyPress}>Salvar</button>
+                        <button className='bg-white w-[120px] h-[40px] text-base border border-[#d1d1d1] rounded-[10px] cursor-pointer duration-300 hover:bg-[#eeeeee] active:bg-[#f7f7f7]' type='button' onClick={updateUser} onKeyDown={handleKeyPress}>Salvar</button>
                     )}
                 </div>
             </main>

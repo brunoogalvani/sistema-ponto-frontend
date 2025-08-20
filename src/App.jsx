@@ -1,13 +1,13 @@
 import React from 'react';
-import RegistrarPonto from './pages/RegistrarPonto/RegistrarPonto.jsx'
-import Login from './pages/Login/Login.jsx'
-import Register from './pages/Register/Register.jsx';
-import AreaAdmin from './pages/AreaAdmin/AreaAdmin.jsx';
-import ProtectedRoute from './components/ProtectedRoute.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home/Home.jsx'
-import Conta from './pages/Conta/Conta.jsx';
-import SeusPontos from './pages/SeusPontos/SeusPontos.jsx';
+import RegistrarPonto from './pages/RegistrarPonto.jsx'
+import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx';
+import AreaAdmin from './pages/AreaAdmin.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+import Home from './pages/Home.jsx'
+import Conta from './pages/Conta.jsx';
+import SeusPontos from './pages/SeusPontos.jsx';
 
 function App() {
 

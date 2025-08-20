@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import './ModalCriarUser.css'
-import api from '../../services/api'
-import Alert from '../Alert/Alert';
+import api from '../services/api'
+import Alert from './Alert';
 
 function ModalCriarUser({ onClose, id = 'main' }) {
 
@@ -59,12 +58,13 @@ function ModalCriarUser({ onClose, id = 'main' }) {
 
     return (
         <>
-            <main id='main' className='main-criar-user' onClick={handleOutClick}>
-                <div className='criar-user-container'>
-                    <form className='register-form' onKeyDown={handleKeyPress}>
-                        <h1>Cadastre um usuário</h1>
+            <main id='main' className='fixed z-[1000] top-0 w-screen h-screen bg-[#00000099] content-center' onClick={handleOutClick}>
+                <div className='bg-[#f1f1f1] w-[350px] border border-[#d8d8d8] rounded-[10px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] my-0 mx-auto p-5 text-center'>
+                    <form className='h-[350px] flex flex-col justify-evenly items-center' onKeyDown={handleKeyPress}>
+                        <h1 className='text-[28px] font-bold'>Cadastre um usuário</h1>
 
                         <input
+                            className='bg-white w-[270px] h-[30px] text-sm border border-[#d1d1d1] rounded-[5px] outline-none text-center'
                             placeholder='Nome'
                             name='name'
                             type='text'
@@ -74,6 +74,7 @@ function ModalCriarUser({ onClose, id = 'main' }) {
                         />
 
                         <input
+                            className='bg-white w-[270px] h-[30px] text-sm border border-[#d1d1d1] rounded-[5px] outline-none text-center'
                             placeholder='Email'
                             name='email'
                             type='email'
@@ -82,26 +83,27 @@ function ModalCriarUser({ onClose, id = 'main' }) {
                             autoComplete='off'
                         />
 
-                        <div className="password-input">
+                        <div className='bg-white flex items-center w-[270px] gap-2 border border-[#d1d1d1] rounded-[5px]'>
                             <input
+                                className='bg-white w-[270px] h-[30px] text-sm rounded-[5px] outline-none text-center flex-1 pl-[35px]'
                                 placeholder='Senha'
                                 type={showPassword ? 'text' : 'password'}
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                             />
 
-                            <i className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} onClick={() => setShowPassword(!showPassword)}></i>
+                            <i className={`text-xl cursor-pointer pr-[5px] bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`} onClick={() => setShowPassword(!showPassword)}></i>
                         </div>
 
-                        <select value={role} onChange={e => setRole(e.target.value)}>
+                        <select className='bg-white h-[25px] w-[200px] pl-2.5 border border-[#b6b6b6] rounded-[10px] outline-none' value={role} onChange={e => setRole(e.target.value)}>
                             <option value="" disabled>Selecione um Role</option>
                             <option value="USER">USER</option>
                             <option value="ADMIN">ADMIN</option>
                         </select>
-                        <button type='button' onClick={criarUser}>Cadastrar</button>
+                        <button className='bg-white w-[120px] h-[40px] text-base border border-[#d1d1d1] rounded-[10px] cursor-pointer duration-300 hover:bg-[#eeeeee] active:bg-[#f7f7f7]' type='button' onClick={criarUser}>Cadastrar</button>
                     </form>
 
-                    <button onClick={onClose}>Fechar</button>
+                    <button className='bg-white w-[120px] h-[40px] text-base border border-[#d1d1d1] rounded-[10px] cursor-pointer duration-300 hover:bg-[#eeeeee] active:bg-[#f7f7f7]' onClick={onClose}>Fechar</button>
                 </div>
             </main>
 

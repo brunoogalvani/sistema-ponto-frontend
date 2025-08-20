@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import './ModalPontos.css'
-import api from '../../services/api';
-import Alert from '../Alert/Alert';
+import api from '../services/api';
+import Alert from './Alert';
 
 function ModalPontos({ onClose, id = 'main' }) {
 
@@ -58,9 +57,9 @@ function ModalPontos({ onClose, id = 'main' }) {
 
   return (
     <>
-      <main id='main' className='main-pontos' onClick={handleOutClick}>
-        <div className="modal-pontos-container">
-          <select value={selectedUserId} onChange={handleSelectChange}>
+      <main id='main' className='fixed z-[1000] top-0 w-screen h-screen bg-[#00000099] content-center' onClick={handleOutClick}>
+        <div className='bg-[#f1f1f1] w-[600px] h-[500px] border border-[#d8d8d8] rounded-[10px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] my-0 mx-auto p-5 flex flex-col justify-evenly items-center'>
+          <select className='bg-white h-[25px] w-[300px] pl-2.5 border border-[#b6b6b6] rounded-[10px] outline-none' value={selectedUserId} onChange={handleSelectChange}>
             <option value="" disabled selected>Selecione</option>
             {users.length!==0 ?
               users.map((user) => (
@@ -70,44 +69,44 @@ function ModalPontos({ onClose, id = 'main' }) {
             }
           </select>
 
-          <div className="pontos">
+          <div className='h-[200px] content-center overflow-y-auto'>
             {pontos.length!==0 ? (
               pontos.map((ponto) => (
-                <div key={ponto.id} className="pontos-dia">
-                  <div className="dia">
+                <div key={ponto.id} className='bg-[#f8f8f8] w-[500px] rounded-[10px] mt-[30px] mb-0 my-auto p-5 grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[auto_auto] gap-2.5 text-center h-auto mr-2.5 first:mt-0'>
+                  <div className='col-span-full'>
                     Dia:
-                    <span> {ponto.dia}</span>
+                    <span className='text-[#808080]'> {ponto.dia}</span>
                   </div>
-                  <div className="horario">
+                  <div className='flex flex-col'>
                     Entrada
-                    <span>{ponto.entradaManha || "--:--"}</span>
+                    <span className='text-[#808080]'>{ponto.entradaManha || "--:--"}</span>
                   </div>
-                  <div className="horario">
+                  <div className='flex flex-col'>
                     Saída
-                    <span>{ponto.saidaManha || "--:--"}</span>
+                    <span className='text-[#808080]'>{ponto.saidaManha || "--:--"}</span>
                   </div>
-                  <div className="horario">
+                  <div className='flex flex-col'>
                     Entrada
-                    <span>{ponto.entradaTarde || "--:--"}</span>
+                    <span className='text-[#808080]'>{ponto.entradaTarde || "--:--"}</span>
                   </div>
-                  <div className="horario">
+                  <div className='flex flex-col'>
                     Saída
-                    <span>{ponto.saidaTarde || "--:--"}</span>
+                    <span className='text-[#808080]'>{ponto.saidaTarde || "--:--"}</span>
                   </div>
-                  <div className="total-horas">
+                  <div className='col-span-full'>
                     Total de Horas:
-                    <span> {ponto.totalHoras || "--:--"}</span>
+                    <span className='text-[#808080]'> {ponto.totalHoras || "--:--"}</span>
                   </div>
                 </div>
               ))
             ) : (
-              <div className="sem-ponto-container">
-                <span className='sem-ponto'>Não existe nenhum registro de ponto deste usuário</span>
+              <div className='bg-[#f8f8f8] w-[500px] h-[100px] rounded-[10px] mt-[30px] mb-0 mx-auto flex justify-center items-center'>
+                <span className='text-black'>Não existe nenhum registro de ponto deste usuário</span>
               </div>
             )}
           </div>
 
-          <button onClick={onClose}>Fechar</button>
+          <button className='bg-white w-[200px] p-2.5 text-base border border-[#d1d1d1] rounded-[10px] cursor-pointer duration-300 hover:bg-[#eeeeee] active:bg-[#f7f7f7]' onClick={onClose}>Fechar</button>
         </div>
       </main>
 
