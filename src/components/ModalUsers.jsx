@@ -49,7 +49,8 @@ function ModalUsers({ onClose, id = 'main' }) {
     return (
         <>
             <main id='main' className='fixed z-[1000] top-0 w-screen h-screen bg-[#00000099] content-center' onClick={handleOutClick}>
-                <div className='bg-[#f1f1f1] w-[600px] h-[500px] border border-[#d8d8d8] rounded-[10px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] my-0 mx-auto p-5 flex flex-col justify-around items-center'>
+                <div className='bg-[#f1f1f1] w-[600px] h-[550px] border border-[#d8d8d8] rounded-[10px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] my-0 mx-auto p-5 flex flex-col justify-around items-center'>
+                    <h1 className='text-[32px] font-bold'>Usuários do Sistema</h1>
                     <div className='h-[290px] overflow-y-auto'>
                         {users.length!==0 ?
                             users.map((user) => (

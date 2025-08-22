@@ -58,9 +58,10 @@ function ModalPontos({ onClose, id = 'main' }) {
   return (
     <>
       <main id='main' className='fixed z-[1000] top-0 w-screen h-screen bg-[#00000099] content-center' onClick={handleOutClick}>
-        <div className='bg-[#f1f1f1] w-[600px] h-[500px] border border-[#d8d8d8] rounded-[10px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] my-0 mx-auto p-5 flex flex-col justify-evenly items-center'>
+        <div className='bg-[#f1f1f1] w-[600px] h-[550px] border border-[#d8d8d8] rounded-[10px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] my-0 mx-auto p-5 flex flex-col justify-evenly items-center'>
+          <h1 className='text-[32px] font-bold'>Pontos dos Usuários</h1>
           <select className='bg-white h-[25px] w-[300px] pl-2.5 border border-[#b6b6b6] rounded-[10px] outline-none' value={selectedUserId} onChange={handleSelectChange}>
-            <option value="" disabled selected>Selecione</option>
+            <option value="" disabled>Selecione</option>
             {users.length!==0 ?
               users.map((user) => (
                 <option key={user.id} value={user.id}>{user.name}</option>
@@ -69,7 +70,7 @@ function ModalPontos({ onClose, id = 'main' }) {
             }
           </select>
 
-          <div className='h-[200px] content-center overflow-y-auto'>
+          <div className='h-[250px] content-center overflow-y-auto'>
             {pontos.length!==0 ? (
               pontos.map((ponto) => (
                 <div key={ponto.id} className='bg-[#f8f8f8] w-[500px] rounded-[10px] mt-[30px] mb-0 my-auto p-5 grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[auto_auto] gap-2.5 text-center h-auto mr-2.5 first:mt-0'>

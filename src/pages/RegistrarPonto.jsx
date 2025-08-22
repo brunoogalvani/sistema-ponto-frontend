@@ -50,8 +50,8 @@ function RegistrarPonto() {
       <Header />
       <main className='flex flex-col justify-center items-center w-screen h-[calc(100vh-80px)]'>
         <div className='bg-[#f1f1f1] w-[450px] h-[400px] border border-[#d8d8d8] rounded-[10px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] my-0 mx-auto p-5 flex flex-col justify-evenly items-center'>
-          <h1 className='text-[32px] font-bold'>Registrar Ponto</h1>
-          <button className='text-base bg-white flex justify-center border border-[#d1d1d1] rounded-[10px] w-[200px] p-2.5 cursor-pointer duration-300 hover:bg-[#eeeeee] active:bg-[#f7f7f7]' type="button" onClick={baterPonto}>Registrar Ponto</button>
+          <h1 className='text-[32px] font-bold'>Registre seu Ponto</h1>
+          <button className='text-base bg-white flex justify-center border border-[#d1d1d1] rounded-[10px] w-[200px] p-2.5 cursor-pointer duration-300 hover:bg-[#eeeeee] active:bg-[#f7f7f7]' type="button" onClick={baterPonto}>Registrar</button>
         </div>
 
           {ponto ? (

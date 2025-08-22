@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Home from './pages/Home.jsx'
 import Conta from './pages/Conta.jsx';
 import SeusPontos from './pages/SeusPontos.jsx';
+import Solicitacoes from './pages/Solicitacoes.jsx';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/registrar-ponto" element={<RegistrarPonto />} />
               <Route path="/seus-pontos" element={<SeusPontos />} />
-              <Route path="/solicitacoes" />
+              <Route path="/solicitacoes" element={<Solicitacoes />}/>
               <Route path="/conta" element={<Conta />} />
             </Route>
 

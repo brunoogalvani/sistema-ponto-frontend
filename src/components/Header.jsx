@@ -52,9 +52,6 @@ function Header() {
     function voltar() {
         sessionStorage.setItem('userId', '');
         setAlertMessage('Desconectado com sucesso!')
-        setTimeout(() => {
-            navigate('/')
-        }, 3000);
     }
 
     function toggleDropdown() {
@@ -108,7 +105,7 @@ function Header() {
                 </div>
             </header>
 
-            {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
+            {alertMessage ? <Alert onClose={() => {handleAlertClose(); navigate('/');}}>{alertMessage}</Alert> : null}
         </>
     )
 }

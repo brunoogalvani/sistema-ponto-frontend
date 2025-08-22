@@ -25,7 +25,7 @@ function Home() {
                         <>
                             <h1 className='text-[32px] font-bold'>Sistema de Ponto Eletrônico</h1>
 
-                            <h2 className='text-2xl font-bold'>Navegue nas abas para utilizar o sistema!</h2>
+                            <h2 className='text-2xl font-bold'>Navegue pelas abas para utilizar o sistema!</h2>
                         </>
                     ) : (
                         <>
