@@ -30,7 +30,6 @@ function Register() {
 
             if (response.status === 201) {
                 setAlertMessage('Usuário criado com sucesso!')
-                autenticar()
             }
         } catch (error) {
             console.error("Erro no cadastro", error);
@@ -113,7 +112,7 @@ function Register() {
                 </div>
             </main>
 
-            {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
+            {alertMessage ? <Alert onClose={()=> {handleAlertClose(); autenticar();}}>{alertMessage}</Alert> : null}
         </>
     )
 }

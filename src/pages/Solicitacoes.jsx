@@ -83,10 +83,23 @@ function Solicitacoes() {
                                         Saída
                                         <span className='text-[#808080]'>{solicitacao.saidaTardeNovo || "--:--"}</span>
                                     </div>
-                                    <div className='col-span-full'>
-                                        Status:
-                                        <span className="text-[color]" style={{color: statusColors[solicitacao.status]}}> {solicitacao.status}</span>
-                                    </div>
+                                    {solicitacao.status!=='PENDENTE' ? (
+                                        <>
+                                            <div className='col-span-2'>
+                                                Status:
+                                                <span className="text-[color]" style={{color: statusColors[solicitacao.status]}}> {solicitacao.status}</span>
+                                            </div>
+                                            <div className='col-span-2'>
+                                                Admin:
+                                                <span className="text-[#808080]"> {solicitacao.userAdminName}</span>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div className='col-span-full'>
+                                            Status:
+                                            <span className="text-[color]" style={{color: statusColors[solicitacao.status]}}> {solicitacao.status}</span>
+                                        </div>
+                                    )}
                                 </div>
                             ))
                             ) : (

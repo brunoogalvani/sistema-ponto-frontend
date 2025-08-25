@@ -97,11 +97,17 @@ function ModalSolicitacao({ onClose, id = 'main' }) {
                                         Motivo:
                                         <span className={`text-[#808080]`}> {solicitacao.motivo}</span>
                                     </div>
-                                    <div className='flex justify-evenly'>
-                                        <i class="text-2xl text-green-600 cursor-pointer bi bi-check-square-fill" onClick={() => processarSolicitacao(solicitacao.id, true)}></i>
-                                        <i class="text-2xl text-red-600 cursor-pointer bi bi-x-square-fill" onClick={() => processarSolicitacao(solicitacao.id, false)}></i>
-
-                                    </div>
+                                    {solicitacao.status!=='PENDENTE' ? (
+                                        <div className='flex justify-evenly'>
+                                            <i class="text-2xl text-gray-300 bi bi-check-square-fill"></i>
+                                            <i class="text-2xl text-gray-300 bi bi-x-square-fill"></i>
+                                        </div>
+                                    ) : (
+                                        <div className='flex justify-evenly'>
+                                            <i class="text-2xl text-green-600 cursor-pointer bi bi-check-square-fill" onClick={() => processarSolicitacao(solicitacao.id, true)}></i>
+                                            <i class="text-2xl text-red-600 cursor-pointer bi bi-x-square-fill" onClick={() => processarSolicitacao(solicitacao.id, false)}></i>
+                                        </div>
+                                    )}
                                     <div className='col-span-full'>
                                         Original
                                     </div>

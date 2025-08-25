@@ -19,7 +19,7 @@ function RegistrarPonto() {
 
   useEffect(() => {
     getPonto()
-  }, [userId]);
+  }, []);
 
   async function getPonto() {
     try {

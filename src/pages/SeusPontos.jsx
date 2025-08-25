@@ -12,7 +12,7 @@ function SeusPontos() {
     
     useEffect(() => {
         getPontos()
-      }, [userId]);
+    }, []);
 
     async function getPontos() {
         try {
