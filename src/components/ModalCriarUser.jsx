@@ -36,7 +36,6 @@ function ModalCriarUser({ onClose, id = 'main' }) {
             }
         } catch (error) {
             console.error("Erro no cadastro", error);
-            // alert("Usuário já existe");
             setAlertMessage('Usuário já existe')
         }
     }

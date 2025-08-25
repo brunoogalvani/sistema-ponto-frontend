@@ -8,7 +8,7 @@ function ModalUsers({ onClose, id = 'main' }) {
     const [users, setUsers] = useState([]);
     const [isModalCriarUserOpen, setIsModalCriarUserOpen] = useState(false)
     const userId = sessionStorage.getItem('userId');
-    
+    const [confirmDeleteId, setConfirmDeleteId] = useState(null);
     const [alertMessage, setAlertMessage] = useState(null)
 
     useEffect(() => {
@@ -28,9 +28,7 @@ function ModalUsers({ onClose, id = 'main' }) {
     async function deletarUser(id) {
         try {
             await api.delete(`/users/${id}`)
-            // alert('Usuário deletado com sucesso!')
             setAlertMessage('Usuário deletado com sucesso!')
-            getUsers();
         } catch (error) {
             setAlertMessage('Erro ao deletar usuário')
             console.error("Erro ao deletar usuário: ", error)
@@ -61,7 +59,7 @@ function ModalUsers({ onClose, id = 'main' }) {
                                     
                                     {user.id.toString()===userId ? null : (
                                         <div className='col-3 row-2 text-center'>
-                                            <i onClick={() => deletarUser(user.id)} className="text-[#ff0000] cursor-pointer bi bi-trash3-fill"></i>
+                                            <i onClick={() => setConfirmDeleteId(user.id)} className="text-[#ff0000] cursor-pointer bi bi-trash3-fill"></i>
                                         </div>
                                     )}
                                 </div>
@@ -75,6 +73,18 @@ function ModalUsers({ onClose, id = 'main' }) {
                     <button className='bg-white w-[200px] p-2.5 text-base border border-[#d1d1d1] rounded-[10px] cursor-pointer duration-300 hover:bg-[#eeeeee] active:bg-[#f7f7f7]' onClick={onClose}>Fechar</button>
                 </div>
             </main>
+
+            {confirmDeleteId && (
+                <Alert 
+                    onClose={() => setConfirmDeleteId(null)}
+                    onConfirm={() => {
+                    deletarUser(confirmDeleteId);
+                    setConfirmDeleteId(null);
+                    }}
+                >
+                    Tem certeza que deseja deletar este usuário?
+                </Alert>
+            )}
 
             {isModalCriarUserOpen && <ModalCriarUser onClose={() => setIsModalCriarUserOpen(false)} />}
             {alertMessage ? <Alert onClose={handleAlertClose}>{alertMessage}</Alert> : null}
