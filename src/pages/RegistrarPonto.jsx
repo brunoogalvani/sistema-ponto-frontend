@@ -59,7 +59,7 @@ function RegistrarPonto() {
               <div className='bg-[#f8f8f8] w-[500px] h-[150px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] rounded-[10px] mt-[30px] mb-0 mx-auto p-5 grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[auto_auto] gap-2.5 text-center'>
                 <div className='col-span-full'>
                   Dia:
-                  <span className='text-[#808080]'> {dia}/{mes}/{ano}</span>
+                  <span className='text-[#808080]'> {dataFormatada}</span>
                 </div>
                 <div className='flex flex-col'>
                   Entrada
@@ -85,7 +85,7 @@ function RegistrarPonto() {
             </>
           ) : (
             <div className='bg-[#f8f8f8] w-[500px] h-[100px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] rounded-[10px] mt-[30px] mb-0 mx-auto flex justify-center items-center'>
-              <span className='text-black'>Não existe nenhum registro de ponto no dia {dia}/{mes}/{ano}</span>
+              <span className='text-black'>Não existe nenhum registro de ponto no dia {dataFormatada}</span>
             </div>
           )}
       </main>
