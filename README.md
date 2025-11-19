@@ -2,8 +2,6 @@
 
 Esse frontend foi desenvolvida como projeto pessoal em **React.js** e **Tailwind CSS** para estilizar, utilizando o **Docker** para containerização e **Nginx** para servir os conteúdos estáticos.
 
----
-
 ## Tecnologias
 
 - React.js
@@ -12,16 +10,12 @@ Esse frontend foi desenvolvida como projeto pessoal em **React.js** e **Tailwind
 - Docker
 - Nginx
 
----
-
 ## Funcionalidades
 
 - Listar, adicionar, editar ou remover usuários
 - Listar, registrar ou solicitação alteração de pontos
 - Listar e processar solicitações
 - Visualização de administrador do sistema
-
----
 
 ## Como executar o projeto
 
