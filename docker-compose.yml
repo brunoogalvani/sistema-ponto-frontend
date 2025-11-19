@@ -1,0 +1,7 @@
+services:
+  frontend:
+    build: .
+    image: sistema-ponto-frontend:latest
+    container_name: sistema_ponto_frontend
+    ports:
+      - "5173:80"
