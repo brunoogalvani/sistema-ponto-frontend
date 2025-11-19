@@ -1,6 +1,6 @@
 # Sistema de Ponto – Frontend
 
-Esse frontend foi desenvolvida como projeto pessoal em **React.js** e **Tailwind CSS** para estilizar, utilizando o **Docker** para containerização e **Nginx** para servir os conteúdos estáticos.
+Esse frontend foi desenvolvido como projeto pessoal em **React.js** e **Tailwind CSS** para estilizar, utilizando o **Docker** para containerização e **Nginx** para servir os conteúdos estáticos.
 
 ## Tecnologias
 
